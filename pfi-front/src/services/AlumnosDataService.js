@@ -25,6 +25,9 @@ class AlumnosDataService {
    return http.get('/alumnos/movalumno'); 
   }
 
+  getOaloumno(id) {
+    return http.get(`/alumnos/movalumno/${id}`);
+  }
 }
 
 export default new AlumnosDataService();

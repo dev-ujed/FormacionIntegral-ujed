@@ -25,7 +25,7 @@
           <template v-slot:item.detalles="{ item }">
           <v-btn
               class="ma-2"
-              @click="sendStudent(item.id)"
+              @click="sendStudent(item.cve_alumno)"
             >
               <v-icon>
                 mdi-account-details

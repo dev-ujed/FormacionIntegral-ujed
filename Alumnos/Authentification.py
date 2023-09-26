@@ -4,7 +4,7 @@ from rest_framework import exceptions
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.authentication import get_authorization_header
 
-from .models import CustomUser
+from .models import CustomUser 
 
 class JWTAuthentication(BaseAuthentication):
     def authenticate(self, request): 

@@ -1,5 +1,7 @@
 <template>
-  <v-container id="createFile">
+    <div>
+        <drawer/>
+        <v-container id="createFile">
       <v-row id="datosAlumno">
         <v-card class="elevation-8">
             <v-card-title>Datos del Alumno</v-card-title>
@@ -25,7 +27,7 @@
                     <v-card-text>
                         <label><strong>Alumno: </strong></label>
                         <v-spacer></v-spacer>
-                        <label>{{ dataAlumno.nombres }}  {{dataAlumno.apellidos}}</label>
+                        <label>{{ dataAlumno.nombre }}  {{dataAlumno.paterno}}</label>
                         <v-spacer></v-spacer>
                         <label><strong>Matricula: </strong></label>
                         <v-spacer></v-spacer>
@@ -173,12 +175,16 @@
             <v-icon>mdi-file-pdf-box</v-icon>
         </v-btn>
     </v-speed-dial>
-  </v-container>
+        </v-container>
+
+    </div>
+  
 </template>
 
 <script>
 import AlumnosDataService from "../../services/AlumnosDataService";
 import FormacionInDataService from "../../services/FormacionInDataService";
+import drawer from "../Drawer/Drawer.vue"; 
 
 /* import html2canvas from "html2canvas";*/
 import jsPDF from "jspdf"; 
@@ -189,7 +195,7 @@ export default {
   name: "HistorialEventos",
   data() {
     return {
-      dataAlumno: [],
+      datalumno: [],
       eventsAlumno: [],
       totalCreditos: 0,
       alumnoDataFiles: [],
@@ -223,16 +229,17 @@ export default {
       
   },
   components: {
-      downloadExcel 
+      downloadExcel, 
+      drawer
   },
   methods: {
     getAlumno() {
-        AlumnosDataService.get(this.$route.params.id)
+        AlumnosDataService.getOaloumno(this.$route.params.id)
             .then(response => {
                 this.dataAlumno = response.data;
                 this.alumnoDataFiles.push(response.data);
                 this.fileName = response.data.matricula;
-                this.alumnoExcel = "Alumno: "+ response.data.nombres + "  " + response.data.apellidos + "  " + "Matricula: " + response.data.matricula + "  "  + "Carrera: " + response.data.carrera + "  " + "Semestre: " + response.data.semestre;
+                this.alumnoExcel = "Alumno: "+ response.data.nombres + "  " + response.data.apellidos + "  " + "Matricula: " + response.data.matricula + "  "  + "Carrera: " + response.data.cve_escuela + "  " + "Semestre: " + response.data.semestre;
             })
             .catch(e =>{
                 console.log(e);
@@ -363,7 +370,5 @@ export default {
         position: relative;
     }
 
-    .v-card {
-        
-    }
+   
 </style>

@@ -40,7 +40,7 @@ class omov_alumnoSerializer(serializers.ModelSerializer):
                   'semestre', 
                   'alumno', 
                   'cve_alumno', 
-                  'desc_carrera', 
+                  'desc_carrera',  
                   )
         
     def get_alumno(self, obj):
@@ -68,7 +68,7 @@ class UserSerializer(ModelSerializer):
         if password is not None: 
             instance.set_password(password)
         instance.save()
-        return instance
+        return instance 
     
 class CoordinatorAlumnoSerializer(serializers.ModelSerializer): 
     alumno = serializers.SerializerMethodField()

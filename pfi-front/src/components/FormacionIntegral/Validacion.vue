@@ -73,7 +73,7 @@
               <v-icon>
                 mdi-checkbox-marked-circle
               </v-icon>
-            </v-btn>
+            </v-btn> 
             <v-btn v-if="item.asistencia != 0"
               class="ma-2"
               color=""
@@ -107,7 +107,7 @@
             >
               <v-icon
                 dark
-              >
+              > 
                 mdi-delete
               </v-icon>
             </v-btn>

@@ -126,6 +126,7 @@ DATABASE_ROUTERS = ['Alumnos.dbrouters.oracleRouter',]
 
 AUTH_USER_MODEL = 'Alumnos.CustomUser'
 
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 

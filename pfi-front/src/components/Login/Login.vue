@@ -16,16 +16,16 @@
               <form class="form-signin" @submit.prevent="handleSubmit">
                 <v-text-field
                 label="Correo Electronico"
-                single-line
-                variant="solo"
+                variant="regular"
+                placeholder="Placeholder"
                 v-model="email"
                 background-color="white"
               ></v-text-field>
 
                 <v-text-field
                 label="Contraseña"
-                single-line
-                variant="outlined"
+                variant="regular"
+                placeholder="Placeholder"
                 v-model="password"
                 background-color="white"
                 type="password"
@@ -76,6 +76,7 @@ export default {
       password:'', 
       showEmailAlert: false,
       errorPassword: false,
+      user: null,
     }; 
   }, 
   methods: {
@@ -104,7 +105,9 @@ export default {
       }
 
      
-    }
+    }, 
+   
+
   },
 
 };

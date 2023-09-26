@@ -137,7 +137,7 @@ export default {
     getImage(event) {
       this.data.img = event;
       this.data.evento = this.$route.params.id;
-      this.data.alumno = 1;
+      this.data.alumno = "04M5030";
       if (event != null) {
         this.active = false;
       } else {
@@ -153,14 +153,14 @@ export default {
                 */
       formData.append("img", this.data.img);
       formData.append("evento", this.data.evento);
-      formData.append("alumno", this.data.alumno);
+      formData.append("cve_alumno", this.data.alumno);
       /*
                   Make the request to the POST /single-file URL
                 */
       EventosDataService.createEvidencia(formData)
         .then((response) => {
           console.log(response);
-          this.retrievEvidencia(this.$route.params.id, 1);
+          this.retrievEvidencia(this.$route.params.id, "04M5030");
         })
         .catch((e) => {
           console.log(e);
@@ -175,12 +175,12 @@ export default {
                 */
       formData.append("img", this.data.img);
       formData.append("evento", this.data.evento);
-      formData.append("alumno", this.data.alumno);
+      formData.append("cve_alumno", this.data.alumno);
 
       EventosDataService.updateEvidencia(formData, this.evidencia[0].id)
         .then((response) => {
           console.log(response.data);
-          this.retrievEvidencia(this.$route.params.id, 1);
+          this.retrievEvidencia(this.$route.params.id, "04M5030");
         })
         .catch((e) => {
           console.log(e);
@@ -188,7 +188,7 @@ export default {
     },
   },
   created() {
-    this.retrievEvidencia(this.$route.params.id, 1);
+    this.retrievEvidencia(this.$route.params.id, "04M5030");
   },
 };
 </script>

@@ -34,6 +34,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
+from django.contrib.auth import authenticate, login
+from google.oauth2 import id_token
 
 
 class AlumnosCreate(generics.CreateAPIView):
@@ -69,12 +71,18 @@ class AlumnosListView(generics.ListAPIView):
     queryset = Oalumno.objects.all()[:1000]
     serializer_class = oalumnoSerializer
 
+class AlumnosDetailOracle(generics.RetrieveAPIView):
+    # API endpoint that returns a single customer by pk.
+    queryset = Oalumno.objects.all()
+    serializer_class = oalumnoSerializer
+
 class MovAlumno(generics.ListAPIView): 
-    queryset = Omov_alumno.objects.filter(cve_escuela__in = ['1820'], cve_ciclo = '790')[:1000]
+    queryset = Omov_alumno.objects.filter(cve_escuela__in = ['1820'], cve_ciclo = '790')[:100]
     serializer_class = omov_alumnoSerializer
     
     def get_object(self):
-        return self.request.user
+        return self.request.user 
+
 
 class ReggisterApiView(APIView):
     def post(self, request):
@@ -181,8 +189,5 @@ class CoordinatorAlumnosListView(generics.ListAPIView):
         return queryset
 
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
 
-def verificar_authenticacion(request):
-    return JsonResponse({'authenticado': True})
+

@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
-from Alumnos.models import Alumnos
+from Alumnos.models import Alumnos, Oalumno
 # Create your models here. 
 class clasifi_cat(models.Model):
     text = models.CharField(max_length = 100)
@@ -55,7 +55,4 @@ class eventosCalendario(models.Model):
 class eventosSubirevidenciasAlumno(models.Model):
     img = models.ImageField(upload_to='EvidenciasAlumnos/images')
     evento = models.ForeignKey(eventos, on_delete=models.CASCADE)
-    alumno = models.ForeignKey(Alumnos, on_delete=CASCADE)
-
-
-
+    cve_alumno =models.CharField("cve_alumno", max_length=9)

@@ -126,4 +126,4 @@ class evidenciasList(generics.ListAPIView):
     queryset = eventosSubirevidenciasAlumno.objects.all()
     serializer_class = evidenciaSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filter_fields = ['id', 'evento', 'alumno']
+    filter_fields = ['id', 'evento', 'cve_alumno']

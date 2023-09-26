@@ -15,5 +15,5 @@ class calendarioAdmin(admin.ModelAdmin):
 
 @admin.register(eventosSubirevidenciasAlumno)
 class evidenciasAlumno(admin.ModelAdmin):
-    list_display = ('pk','img', 'evento', 'alumno')
-    list_editable = ('img', 'evento', 'alumno')
+    list_display = ('pk','img', 'evento', 'cve_alumno')
+    list_editable = ('img', 'evento', 'cve_alumno')

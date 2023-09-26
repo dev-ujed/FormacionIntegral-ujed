@@ -1,6 +1,7 @@
 from django.db import models
 from rest_framework import serializers 
 from .models import eventos, eventosCalendario, eventosSubirevidenciasAlumno
+from Alumnos.models import Oalumno
 from eventos.models import *
  
 class eventosSerializer(serializers.ModelSerializer):
@@ -73,7 +74,7 @@ class evidenciaSerializerCreate(serializers.ModelSerializer):
         fields = (
                   'img',
                   'evento',
-                  'alumno'
+                  'cve_alumno'
         )
 
 class evidenciaSerializer(serializers.ModelSerializer):
@@ -83,8 +84,8 @@ class evidenciaSerializer(serializers.ModelSerializer):
         fields = ('id',
                   'img',
                   'evento',
-                  'alumno')
-
+                  'cve_alumno')
+        
 class clasificacionSerializer(serializers.ModelSerializer):
     class Meta:
         model = clasifi_cat
