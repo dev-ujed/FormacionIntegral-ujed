@@ -83,6 +83,10 @@ class MovAlumno(generics.ListAPIView):
     def get_object(self):
         return self.request.user 
 
+class MovAlumnoDetail(generics.RetrieveAPIView):
+    # API endpoint that returns a single customer by pk.
+    queryset = Omov_alumno.objects.all()
+    serializer_class = omov_alumnoSerializer
 
 class ReggisterApiView(APIView):
     def post(self, request):

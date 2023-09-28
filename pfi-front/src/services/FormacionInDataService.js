@@ -14,7 +14,7 @@ class FormacionInDataService {
   }
   
   getEventsAlumno(alumno_id){
-    return http.get(`/formacionIn/listEventsData/?alumno_id=${alumno_id}`);
+    return http.get(`/formacionIn/listEventsData/?matricula=${alumno_id}`);
   }
 
   get(id) {

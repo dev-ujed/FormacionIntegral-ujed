@@ -106,12 +106,12 @@ DATABASES = {
    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'testdb',
-        'USER': 'postgres',
-        'PASSWORD': 'Admin123',
-        'HOST': '127.0.0.1',
+        'NAME': 'pf1_db',
+        'USER': 'pfi_user',
+        'PASSWORD': 'pf1_2023',
+        'HOST': '192.168.1.46',
         'PORT': '5432',
-    }, 
+    },
     'desarrollo':{
        'ENGINE': 'django.db.backends.oracle',
        'NAME': 'SAI2',

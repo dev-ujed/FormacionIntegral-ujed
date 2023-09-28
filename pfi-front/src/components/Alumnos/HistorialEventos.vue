@@ -27,11 +27,11 @@
                     <v-card-text>
                         <label><strong>Alumno: </strong></label>
                         <v-spacer></v-spacer>
-                        <label>{{ dataAlumno.nombre }}  {{dataAlumno.paterno}}</label>
+                        <label>{{ dataAlumno.nombre }}  {{dataAlumno.paterno}} {{dataAlumno.materno}}</label>
                         <v-spacer></v-spacer>
                         <label><strong>Matricula: </strong></label>
                         <v-spacer></v-spacer>
-                        <label>{{ dataAlumno.matricula }} </label>
+                        <label>{{ dataAlumno.cve_alumno }} </label>
                     </v-card-text>
                 </v-col>
                 <v-col 
@@ -43,15 +43,15 @@
                     <v-card-text>
                         <label><strong>Carrera: </strong></label>
                         <v-spacer></v-spacer>
-                        <label>{{ dataAlumno.carrera }}</label>
+                        <label></label>
                         <v-spacer></v-spacer>
                         <label><strong>Semestre: </strong></label>
                         <v-spacer></v-spacer>
-                        <label>{{ dataAlumno.semestre }}</label>
+                        <label></label>
                         <v-spacer></v-spacer>
                         <label><strong>Correo electronico: </strong></label>
                         <v-spacer></v-spacer>
-                        <label>{{ dataAlumno.correo }}</label>
+                        <label>{{ dataAlumno.cve_alumno }}@alumnos.ujed.mx</label>
                     </v-card-text>
                 </v-col>
             </v-row>
@@ -195,7 +195,7 @@ export default {
   name: "HistorialEventos",
   data() {
     return {
-      datalumno: [],
+      dataAlumno: [],
       eventsAlumno: [],
       totalCreditos: 0,
       alumnoDataFiles: [],
@@ -236,10 +236,11 @@ export default {
     getAlumno() {
         AlumnosDataService.getOaloumno(this.$route.params.id)
             .then(response => {
+                console.log(response.data)
                 this.dataAlumno = response.data;
                 this.alumnoDataFiles.push(response.data);
-                this.fileName = response.data.matricula;
-                this.alumnoExcel = "Alumno: "+ response.data.nombres + "  " + response.data.apellidos + "  " + "Matricula: " + response.data.matricula + "  "  + "Carrera: " + response.data.cve_escuela + "  " + "Semestre: " + response.data.semestre;
+                this.fileName = response.data.cve_alumno  ;
+                this.alumnoExcel = "Alumno: "+ response.data.nombre + "  " + response.data.paterno + " " + response.data.materno + "  " + "Matricula: " + response.data.cve_alumno + "  "  + "Carrera: " + response.data.cve_escuela + "  " + "Semestre: " + "1";
             })
             .catch(e =>{
                 console.log(e);
