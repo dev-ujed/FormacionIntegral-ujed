@@ -11,11 +11,6 @@
         
         </v-list-item-content>
       </v-list-item>
-   
-
-     
-
-  
 
       <v-list v-for="item in items" :key="item.title" link>
         <v-list-item :to="item.route" color="white">
@@ -91,7 +86,7 @@ export default {
   methods: {
     async logout(){
       try{
-        await axios.post('http://127.0.0.1:8000/alumnos/logout/');
+        await axios.post('http://127.0.0.1:8001/alumnos/logout/');
         window.location.href="/"
         console.log("Sesion Cerrada Correctamente"); 
       }catch(error){

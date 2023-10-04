@@ -120,7 +120,7 @@ export default {
           
 
           let formacionesbymatricula = response.data.filter(function (i) {
-            return i.matricula === "04M5030";
+            return i.matricula === "08M0041";
           });
 
           let formacionesbyasistencia = formacionesbymatricula.filter(function(i){

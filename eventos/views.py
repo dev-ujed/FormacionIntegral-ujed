@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework import exceptions
 import django_filters.rest_framework
+from django_filters.rest_framework import DjangoFilterBackend
 
 #Eventos
 class eventosCreate(generics.CreateAPIView):
@@ -82,13 +83,13 @@ class CategoriasArteList(generics.ListAPIView):
     filter_fields = ['categoria', 'text']
     
 #evidencias de alumnos
+
 class evidencias(APIView):        
     def post(self, request):
         if 'img' not in request.data:
             raise exceptions.ParseError("No has seleccionado el archivo a subir")
         
         archivos = str(request.FILES)
-        print(request.data)
         serializer = evidenciaSerializerCreate(data=request.data)
 
         if serializer.is_valid():
@@ -100,7 +101,9 @@ class evidencias(APIView):
             serializer_response = evidenciaSerializerCreate(evidencia)    
            
             return Response(serializer_response.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            print(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class evidenciasUpdate(APIView):
     def get_object(self, pk):
@@ -127,3 +130,13 @@ class evidenciasList(generics.ListAPIView):
     serializer_class = evidenciaSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filter_fields = ['id', 'evento', 'cve_alumno']
+
+
+class evidenciaPorMatricula(generics.ListAPIView): 
+    serializer_class = evidenciaSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['cve_alumno']
+
+    def get_queryset(self):
+        matricula = self.kwargs['matricula']
+        return eventosSubirevidenciasAlumno.objects.filter(cve_alumno=matricula)

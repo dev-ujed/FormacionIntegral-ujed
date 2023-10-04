@@ -14,9 +14,12 @@ class FormacionInSerializer(serializers.ModelSerializer):
                   'alumno',
                   'created',
                   'modified',
+                  
                   )
 
         #fields = '__all__'
+
+
 
 class FormacionInEventoSerializer(serializers.ModelSerializer):
     unidadResponsable = serializers.CharField(source = 'evento.unidadResponsable')
@@ -34,6 +37,7 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
     #Creditos
     creditos = serializers.DecimalField(source = 'evento.creditos', max_digits = 3, decimal_places=2)
     categorias = serializers.CharField(source = 'evento.categorias')
+    responsable = serializers.CharField(source = 'evento.responsable')
 
     class Meta:
         model = FormacionIntegral
@@ -57,6 +61,8 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
                   'cupo',
                   'descripcion',
                   'creditos',
-                  'categorias')
+                  'categorias',
+                  'responsable'
+                  )
         
         #fields = '__all__'

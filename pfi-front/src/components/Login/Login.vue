@@ -87,7 +87,7 @@ export default {
         console.log("Alerta");
       }else{
         try{
-        const response = await axios.post("http://127.0.0.1:8000/alumnos/login/", {
+        const response = await axios.post("http://127.0.0.1:8001/alumnos/login/", {
           email: this.email, 
           password: this.password, 
         });

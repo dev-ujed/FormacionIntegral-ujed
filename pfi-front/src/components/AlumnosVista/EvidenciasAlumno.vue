@@ -136,6 +136,7 @@ export default {
 
     getImage(event) {
       this.data.img = event;
+      console.log(event);
       this.data.evento = this.$route.params.id;
       this.data.alumno = "04M5030";
       if (event != null) {
@@ -144,7 +145,7 @@ export default {
         this.active = true;
       }
     },
-
+    
     create: function() {
       this.active = true;
       let formData = new FormData();
@@ -193,4 +194,4 @@ export default {
 };
 </script>
 
-<style></style>
+

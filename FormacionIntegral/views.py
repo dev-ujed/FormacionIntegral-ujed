@@ -24,6 +24,8 @@ class FormacionInList(generics.ListAPIView):
     serializer_class = FormacionInSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filter_fields = ['evento_id', 'matricula', 'alumno_id']
+
+
  
 class FormacionInEventosList(generics.ListAPIView):
     # API endpoint that allows customer to be viewed.
@@ -49,4 +51,4 @@ class FormacionInDelete(generics.RetrieveDestroyAPIView):
     queryset = FormacionIntegral.objects.all()
     serializer_class = FormacionInSerializer
 
-#RetrieveUpdateDestroyAPIView
+

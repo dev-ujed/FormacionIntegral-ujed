@@ -31,4 +31,6 @@ urlpatterns = [
     path('categorias1_eve', Categorias1List.as_view()),
     path('categorias2_eve', Categorias2List.as_view()),
     path('categoriasArte_eve', CategoriasArteList.as_view()),
+
+    path('matricula-evidencia/<str:matricula>/', evidenciaPorMatricula.as_view())
 ]

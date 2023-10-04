@@ -95,7 +95,7 @@ export default {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
         try{
-          const response = await axios.request('http://127.0.0.1:8000/alumnos/get_coordinator');
+          const response = await axios.request('http://127.0.0.1:8001/alumnos/get_coordinator');
           this.alumnos = response.data; 
           console.log(this.alumnos);
         }catch(error){
