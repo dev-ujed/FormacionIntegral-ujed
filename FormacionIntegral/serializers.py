@@ -1,6 +1,7 @@
 from rest_framework import serializers 
 from .models import FormacionIntegral
 from Alumnos.models import Oalumno
+from eventos.models import eventosSubirevidenciasAlumno
  
  
 class FormacionInSerializer(serializers.ModelSerializer):
@@ -38,6 +39,7 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
     creditos = serializers.DecimalField(source = 'evento.creditos', max_digits = 3, decimal_places=2)
     categorias = serializers.CharField(source = 'evento.categorias')
     responsable = serializers.CharField(source = 'evento.responsable')
+    evidencia = serializers.SerializerMethodField()
 
     class Meta:
         model = FormacionIntegral
@@ -62,7 +64,16 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
                   'descripcion',
                   'creditos',
                   'categorias',
-                  'responsable'
+                  'responsable', 
+                  'evidencia'
                   )
+        
+    def get_evidencia(self, obj): 
+        evidencia = eventosSubirevidenciasAlumno.objects.filter(evento = obj.evento, cve_alumno = obj.matricula)
+        if evidencia.exists(): 
+            return True
+        else: 
+            return False
+
         
         #fields = '__all__'

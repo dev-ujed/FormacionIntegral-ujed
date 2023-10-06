@@ -120,6 +120,29 @@ class Ocarrera(models.Model):
 		app_label 	= 'desarrollo'
           
 
+class Ociclo_carrera(models.Model):
+	cve_ciclo 				= models.PositiveSmallIntegerField(primary_key=True)
+	cve_carrera 			= models.CharField(max_length=8)
+	estatus_ciclo 			= models.CharField(max_length=1)
+	cve_escuela 			= models.CharField(max_length=8)
+	cve_plan 				= models.CharField(max_length=3)
+	cve_ciclo_sig			= models.PositiveSmallIntegerField()
+	fecha_carta				= models.DateField()
+
+	class Meta:
+		managed 	= False
+		db_table 	= 'CICLO_CARRERA'
+		app_label 	= 'desarrollo'
+
+class Oparametros(models.Model):
+	cve_parametro	= models.IntegerField(primary_key=True)
+	valor			= models.CharField(max_length=4000)
+
+	class Meta:
+		managed		= False
+		db_table	= '"DESARROLLO"."PARAMETROS"'
+		app_label	= 'desarrollo'
+
 class CustomUser(AbstractUser):
     email = models.CharField(max_length=250, unique=True)
     password = models.CharField(max_length=250)

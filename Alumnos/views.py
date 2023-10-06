@@ -14,20 +14,15 @@ from .serializers import AlumnosSerializer, CoordinatorAlumnoSerializer
 from .models import Oalumno
 from .models import Oescuela
 from .models import Omov_alumno, CustomUser, UserToken
-from .serializers import oalumnoSerializer, omov_alumnoSerializer, UserSerializer
+from .models import Ociclo_carrera
+from .serializers import oalumnoSerializer, omov_alumnoSerializer, UserSerializer, ocicloSerializer
 
 from rest_framework import generics
-from allauth.socialaccount.providers.oauth2.views import OAuth2View
+
 
 from rest_framework.views import APIView
 from rest_framework import exceptions
 import datetime
-
-from google.oauth2 import id_token
-from google.auth.transport.requests import Request as GoogleRequest
-from allauth.socialaccount.providers.oauth2.client import OAuth2Error
-from allauth.socialaccount.models import SocialToken, SocialApp
-from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -77,7 +72,7 @@ class AlumnosDetailOracle(generics.RetrieveAPIView):
     serializer_class = oalumnoSerializer
 
 class MovAlumno(generics.ListAPIView): 
-    queryset = Omov_alumno.objects.filter(cve_escuela__in = ['1820'], cve_ciclo = '790')[:100]
+    queryset = Omov_alumno.objects.filter(cve_escuela ='1050')[:200]
     serializer_class = omov_alumnoSerializer
     
     def get_object(self):
@@ -182,14 +177,15 @@ class LogoutApiView(APIView):
     
 class CoordinatorAlumnosListView(generics.ListAPIView): 
     serializer_class = omov_alumnoSerializer
+    
     authentication_classes = [JWTAuthentication]
 
     def get_queryset(self):
         user = self.request.user
         cve_escuela_usuario = user.cve_escuela
-        print(cve_escuela_usuario)
+        cve_parametro = "790"
 
-        queryset = Omov_alumno.objects.filter(cve_escuela=cve_escuela_usuario)[:200]
+        queryset = Omov_alumno.objects.filter(cve_escuela=cve_escuela_usuario, cve_ciclo=cve_parametro)
         return queryset
 
 

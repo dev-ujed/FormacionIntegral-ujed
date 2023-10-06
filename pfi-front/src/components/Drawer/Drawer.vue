@@ -69,11 +69,7 @@ export default {
         icon: "mdi-calendar",
         route: "/calendario",
       },
-      {
-        title: "Vista de Estudiantes",
-        icon: "mdi-account-eye",
-        route: "/alumnos-vista-eventos",
-      },
+     
     ],
    
 
