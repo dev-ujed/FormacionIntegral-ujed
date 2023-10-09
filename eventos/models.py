@@ -18,6 +18,7 @@ class arte_categorias(models.Model):
     text = models.CharField(max_length = 100)
     categoria = models.ForeignKey(catalogo_categorias2, on_delete=CASCADE, null= True)
 
+
 class eventos(models.Model):
     #Descripcion 
     unidadResponsable = models.CharField('unidadResponsable', max_length=150, blank=False,default='')
@@ -40,6 +41,7 @@ class eventos(models.Model):
     subCategoriaArte = models.ForeignKey(arte_categorias, on_delete=models.CASCADE, null= True, related_name='categoriasArte')
     #Crear eventos responsable 
     responsable = models.CharField('responsable', max_length=200)
+   
 
     
 #modelo para el modulo calendario de eventos

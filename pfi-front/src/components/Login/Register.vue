@@ -82,7 +82,7 @@ export default {
       axios
         .post('http://127.0.0.1:8000/alumnos/register/', this.formData)
         .then(response => {
-          console.log(response.data);
+          console.log(response)
           window.location.href = '/inicio'
         })
         .catch(error => {

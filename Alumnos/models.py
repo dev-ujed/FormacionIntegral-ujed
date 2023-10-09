@@ -150,6 +150,7 @@ class CustomUser(AbstractUser):
  
     is_coordinator = models.BooleanField(default=False)
     cve_escuela = models.CharField(max_length=8, null=True)    
+    cve_carrera = models.CharField(max_length=300, null=True)
 
     groups = models.ManyToManyField(Group, related_name='customuser_groups')
     user_permissions = models.ManyToManyField(Permission, related_name='customuser_user_permissions')

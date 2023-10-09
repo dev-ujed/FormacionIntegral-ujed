@@ -508,7 +508,7 @@ export default {
           if(this.currentEvento.subCategoriaArte){
             this.getCategoriasArte(this.currentEvento.subCategoria2.id);
           }
-          console.log(response.data);
+          
         })
         .catch((e) => {
           console.log(e);

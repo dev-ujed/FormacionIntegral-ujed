@@ -94,10 +94,10 @@ export default {
 
         sessionStorage.setItem('jwtToken', response.data.token); 
 
-        console.log(response.data); 
+        
         window.location.href = "/inicio"
         }catch(error){
-          console.error("error al enviar la solicutd ", error)
+          
           this.errorPassword = true; 
           this.showEmailAlert = false; 
           console.log("Contraseña incorrecta")

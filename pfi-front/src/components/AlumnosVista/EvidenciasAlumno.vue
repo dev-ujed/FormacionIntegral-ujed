@@ -126,7 +126,7 @@ export default {
     retrievEvidencia(evento, alumno) {
       EventosDataService.getEvidencias(evento, alumno)
         .then((response) => {
-          console.log(response.data);
+          
           this.evidencia = response.data;
         })
         .catch((e) => {

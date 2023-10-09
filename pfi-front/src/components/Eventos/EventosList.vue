@@ -257,7 +257,7 @@ export default {
       EventosDataService.getAll()
         .then((response) => {
           this.eventos = response.data;
-          console.log(response.data);
+          
         })
         .catch((e) => {
           console.log(e);
@@ -274,7 +274,7 @@ export default {
     },
 
     sendEvent(evento) {
-      console.log(evento);
+      
       this.$router.push("/fi-registro/" + evento.id);
     },
 
@@ -285,7 +285,7 @@ export default {
     exportarAlumnos(id) {
       FormacionInDataService.getAll(id)
         .then((response) => {
-          console.log(response.data);
+          
           this.createData(response.data);
           this.createPDF();
         })
