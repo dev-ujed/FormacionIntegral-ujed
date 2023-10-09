@@ -173,7 +173,7 @@ class LogoutApiView(APIView):
             'message': 'success'
         }
 
-        return response
+        return response 
     
 class CoordinatorAlumnosListView(generics.ListAPIView): 
     serializer_class = omov_alumnoSerializer

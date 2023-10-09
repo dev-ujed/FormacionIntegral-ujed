@@ -146,7 +146,7 @@ class Oparametros(models.Model):
 class CustomUser(AbstractUser):
     email = models.CharField(max_length=250, unique=True)
     password = models.CharField(max_length=250)
-    username = None
+    username = None 
  
     is_coordinator = models.BooleanField(default=False)
     cve_escuela = models.CharField(max_length=8, null=True)    
