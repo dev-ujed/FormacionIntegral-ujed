@@ -60,7 +60,7 @@ class omov_alumnoSerializer(serializers.ModelSerializer):
                   'estatus_ciclo'
                   )
         
-    def get_alumno(self, obj):
+    def get_alumno(self, obj): 
         nombre = {}
         alumno = Oalumno.objects.filter(cve_alumno = obj.cve_alumno).first()
         nombre.update({'nombre': alumno.nombre})
