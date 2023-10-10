@@ -33,6 +33,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8081',
+    'http://fibackend.ujed.mx',
 )
 # Application definition
 
