@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-004ube^$7p-2cbz9j#_(9213)$+2u8cq6=#=oyrk@1%#5-6(y_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [fibackend.ujed.mx]
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
