@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-004ube^$7p-2cbz9j#_(9213)$+2u8cq6=#=oyrk@1%#5-6(y_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fibackend.ujed.mx']
+ALLOWED_HOSTS = ['fibackend.ujed.mx', 'localhost']
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
@@ -190,7 +190,7 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'http://localhost:8081/inicio'
+LOGIN_REDIRECT_URL = 'http://fibackend.ujed.mx/inicio'
 # ACCOUNT_LOGOUT_ON_GET = True
 # ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
