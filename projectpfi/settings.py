@@ -28,13 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['fibackend.ujed.mx']
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8081',
-    'http://fibackend.ujed.mx',
-)
 # Application definition
 
 INSTALLED_APPS = [
@@ -75,6 +69,19 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+CORS_ALLOW_HEADERS = ['*']
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8081',
+    'http://fibackend.ujed.mx',
+)
 
 ROOT_URLCONF = 'projectpfi.urls'
 
