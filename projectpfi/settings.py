@@ -33,7 +33,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8081',
-    'http://formacionintegral.ujed.mx',
+    'http://fibackend.ujed.mx',
 )
 # Application definition
 
@@ -190,7 +190,7 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'http://fibackend.ujed.mx/inicio'
+LOGIN_REDIRECT_URL = 'http://fibackend.ujed.mx'
 
 # ACCOUNT_LOGOUT_ON_GET = True
 # ACCOUNT_LOGOUT_REDIRECT_URL = '/'
