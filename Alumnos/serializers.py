@@ -48,7 +48,6 @@ class oparametroSerializer(serializers.ModelSerializer):
 class omov_alumnoSerializer(serializers.ModelSerializer):     
     alumno = serializers.SerializerMethodField()
     desc_carrera = serializers.SerializerMethodField()
-    estatus_ciclo = serializers.SerializerMethodField()
 
     class Meta: 
         model = Omov_alumno
@@ -57,7 +56,8 @@ class omov_alumnoSerializer(serializers.ModelSerializer):
                   'alumno', 
                   'cve_alumno',
                   'desc_carrera',
-                  'estatus_ciclo'
+                  'cve_ciclo', 
+                  'cve_carrera'
                   )
         
     def get_alumno(self, obj): 
@@ -72,12 +72,7 @@ class omov_alumnoSerializer(serializers.ModelSerializer):
         desc_carrera = Ocarrera.objects.filter(cve_carrera = obj.cve_carrera).last()
         return desc_carrera.desc_carrera
         
-    def get_estatus_ciclo(self, obj):
-        estatus_ciclo = Ociclo_carrera.objects.filter(cve_carrera=obj.cve_carrera).first()
-        if estatus_ciclo:
-            return estatus_ciclo.estatus_ciclo
-        return None  
-   
+    
 
 
 class UserSerializer(ModelSerializer):
@@ -98,7 +93,7 @@ class UserSerializer(ModelSerializer):
 class CoordinatorAlumnoSerializer(serializers.ModelSerializer): 
     alumno = serializers.SerializerMethodField()
     desc_carrera = serializers.SerializerMethodField()
-    cve_parametro = serializers.SerializerMethodField()
+    
 
     class Meta: 
         model = Omov_alumno
@@ -115,7 +110,5 @@ class CoordinatorAlumnoSerializer(serializers.ModelSerializer):
         def get_desc_carrera(self,obj): 
             desc_carrera = Ocarrera.objects.filter(cve_carrera=obj.cve_carrera).first()
             return desc_carrera.desc_carrera
-        @staticmethod
-        def get_cve_parametro():  # Marcar como estática
-            cve_parametro = Oparametros.objects.filter(cve_parametro='118').first().valor
-            return cve_parametro
+        
+      
