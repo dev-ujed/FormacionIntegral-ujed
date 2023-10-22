@@ -31,7 +31,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 from django.contrib.auth import authenticate, login
 from google.oauth2 import id_token
-import django_filters.rest_framework
+from django.db.models import Q
 
 
 class AlumnosCreate(generics.CreateAPIView):
@@ -176,28 +176,21 @@ class LogoutApiView(APIView):
 
         return response 
     
-class CoordinatorAlumnosListView(generics.ListAPIView): 
+class CoordinatorAlumnosListView(generics.ListAPIView):
     serializer_class = omov_alumnoSerializer
     authentication_classes = [JWTAuthentication]
+
     def get_queryset(self):
         user = self.request.user
         cve_escuela_usuario = user.cve_escuela
-        cve_carrera_usuario = user.cve_carrera
-        ciclo = self.request.GET.get('cve_ciclo')
+        ciclos = self.request.GET.get('cve_ciclo')
+        cve_carreras_usuario = user.cve_carrera.split(',') 
 
         queryset = Omov_alumno.objects.filter(
-            cve_escuela = cve_escuela_usuario, 
-            cve_carrera = cve_carrera_usuario, 
-            cve_ciclo = ciclo
+            cve_ciclo=ciclos,
+            cve_escuela=cve_escuela_usuario,
+            cve_carrera__in=cve_carreras_usuario  
         )
-
-        print(cve_carrera_usuario,cve_escuela_usuario,ciclo)
-
-        return queryset
-    
         
-    
-
-    
-
+        return queryset
 
