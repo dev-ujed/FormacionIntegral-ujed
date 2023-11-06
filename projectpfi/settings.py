@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-004ube^$7p-2cbz9j#_(9213)$+2u8cq6=#=oyrk@1%#5-6(y_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fibackend.ujed.mx']
+ALLOWED_HOSTS = ['fibackend.ujed.mx', '127.0.0.1']
 
 
 # Application definition
@@ -197,12 +197,12 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'http://fibackend.ujed.mx'
+LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000'
 
 # ACCOUNT_LOGOUT_ON_GET = True
 # ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
-# SOCIALACCOUNT_QUERY_EMAIL = True
+# SOCIAL ACCOUNT_QUERY_EMAIL = True
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
