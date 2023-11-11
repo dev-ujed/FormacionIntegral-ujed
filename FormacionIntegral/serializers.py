@@ -29,7 +29,7 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
     eventoDedicadoA = serializers.CharField(source = 'evento.eventoDedicadoA')
     #imagen = serializers.ImageField(upload_to='Eventos/images')
     #Calendario
-    fechaEvento = serializers.DateField(source = 'evento.fechaEvento')
+    
     fechaInicio = serializers.DateField(source = 'evento.fechaInicio')
     fechaFin = serializers.DateField(source = 'evento.fechaFin')
     inicioEvento = serializers.TimeField(source = 'evento.inicioEvento')
@@ -80,3 +80,4 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
 
         
         #fields = '__all__'
+

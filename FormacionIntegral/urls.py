@@ -2,7 +2,7 @@ from django.conf.urls import url
 from FormacionIntegral import views 
  
 from django.urls import include, path
-from .views import FormacionInCreate, FormacionInList, FormacionInDetail, FormacionInUpdate, FormacionInDelete, FormacionInEventosList
+from .views import FormacionInCreate, FormacionInList, FormacionInDetail, FormacionInUpdate, FormacionInDelete, FormacionInEventosList, generate_Excel
 
 urlpatterns = [
     path('create/', FormacionInCreate.as_view(), name='crear-Registro'),
@@ -11,5 +11,7 @@ urlpatterns = [
     path('<int:pk>/', FormacionInDetail.as_view(), name='retrieve-Registro'),
     path('update/<int:pk>/', FormacionInUpdate.as_view(), name='actualizar-Registro'),
     #path('put/<int:pk>/', FormacionInUpdate.as_view(), name='actualizar-Registro'),
-    path('delete/<int:pk>/', FormacionInDelete.as_view(), name='eliminar-Registro')
+    path('delete/<int:pk>/', FormacionInDelete.as_view(), name='eliminar-Registro'), 
+     #Excel
+     path('generar_excel/<int:evento_id>/', generate_Excel.as_view(), name="generar_excel")
 ]

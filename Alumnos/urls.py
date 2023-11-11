@@ -21,5 +21,4 @@ urlpatterns = [
     path('refresh/', RefreshAPIView.as_view()), 
     path('logout/', LogoutApiView.as_view()), 
     path('get_coordinator', CoordinatorAlumnosListView.as_view()),  
-      
 ]
