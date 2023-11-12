@@ -19,14 +19,34 @@ class AlumnosSerializer(serializers.ModelSerializer):
         
         
 
-class oalumnoSerializer(serializers.ModelSerializer):  
+class oalumnoSerializer(serializers.ModelSerializer): 
+    alumno = serializers.SerializerMethodField()
+    desc_carrera = serializers.SerializerMethodField()
+
     class Meta: 
-        model = Oalumno
-        fields = ('cve_alumno', 
-                  'nombre', 
-                  'paterno', 
-                  'materno',
-                  )
+        model = Omov_alumno
+        fields = (
+            'cve_escuela', 
+            'semestre', 
+            'alumno', 
+            'cve_alumno', 
+            'desc_carrera', 
+            'cve_ciclo', 
+            'cve_carrera'
+        )
+
+    def get_alumno(self, obj): 
+        nombre = {}
+        alumno = Oalumno.objects.filter(cve_alumno = obj.cve_alumno).first()
+        nombre.update({'nombre': alumno.nombre})
+        nombre.update({'paterno': alumno.paterno})
+        nombre.update({'materno': alumno.materno})
+        return nombre
+    
+    def get_desc_carrera(self, obj): 
+        desc_carrera = Ocarrera.objects.filter(cve_carrera = obj.cve_carrera).last()
+        return desc_carrera.desc_carrera
+        
 
 class ocicloSerializer(serializers.ModelSerializer): 
 
