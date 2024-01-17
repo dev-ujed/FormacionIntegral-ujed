@@ -46,8 +46,8 @@ class eventos          (models.Model):
     #     fechas
           fechaInicio       = models.DateField('fechaInicio')
           fechaFin          = models.DateField('fechaFin', null=True, blank=True)
-   
-
+          horas_totales     = models.IntegerField('horas_totales', blank=True, null=True)  
+          contacto          =  models.CharField('contacto', max_length=100, blank=True, null=True)  
     
 #     modelo            para   el    modulo calendario de eventos
 class eventosCalendario(models.Model):
