@@ -21,13 +21,13 @@ class arte_categorias(  models.Model                                            
           categoria       = models.ForeignKey(catalogo_categorias2, on_delete=CASCADE, null= True)
 
 
-class eventos          (models.Model):
+class eventos(models.Model):
     #     Descripción
           unidadResponsable = models.CharField('unidadResponsable', max_length=150, blank=False,default='')
           tituloEvento      = models.CharField('tituloEvento', max_length=200,blank=False,default='')
           descripcionEvento = models.TextField('descripcionEvento')
           eventoDedicadoA   = models.CharField('eventoDedicadoA', max_length=200)
-    #     imagen            = models.ImageField(upload_to='Eventos/images')
+          flayer            = models.ImageField(upload_to='Eventos/images', null= True)
     #     Calendario
       #     fechaEvento       = models.DateField('fechaEvento', default=timezone.now)
           inicioEvento      = models.TimeField('inicioEvento', null=True, blank=True)
@@ -47,7 +47,7 @@ class eventos          (models.Model):
           fechaInicio       = models.DateField('fechaInicio')
           fechaFin          = models.DateField('fechaFin', null=True, blank=True)
           horas_totales     = models.IntegerField('horas_totales', blank=True, null=True)  
-          contacto          =  models.CharField('contacto', max_length=100, blank=True, null=True)  
+          contacto          =  models.CharField('contacto', max_length=100, blank=True, null=True)
     
 #     modelo            para   el    modulo calendario de eventos
 class eventosCalendario(models.Model):

@@ -27,7 +27,7 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
     tituloEvento = serializers.CharField(source = 'evento.tituloEvento')
     descripcionEvento = serializers.CharField(source = 'evento.descripcionEvento')
     eventoDedicadoA = serializers.CharField(source = 'evento.eventoDedicadoA')
-    #imagen = serializers.ImageField(upload_to='Eventos/images')
+    flayer = serializers.ImageField(source='evento.flayer')
     #Calendario
     
     fechaInicio = serializers.DateField(source = 'evento.fechaInicio')
@@ -42,7 +42,6 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
     categorias = serializers.CharField(source = 'evento.categorias')
     responsable = serializers.CharField(source = 'evento.responsable')
     evidencia = serializers.SerializerMethodField()
-
     class Meta:
         model = FormacionIntegral
         fields = ('id',
@@ -68,7 +67,8 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
                   'creditos',
                   'categorias',
                   'responsable', 
-                  'evidencia'
+                  'evidencia', 
+                  'flayer',
                   )
         
     def get_evidencia(self, obj): 
