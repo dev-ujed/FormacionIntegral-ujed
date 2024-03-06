@@ -71,20 +71,13 @@ class evidenciaSerializerCreate(serializers.ModelSerializer):
 
     class Meta:
         model = eventosSubirevidenciasAlumno
-        fields = (
-                  'img',
-                  'evento',
-                  'cve_alumno'
-        )
+        fields = '__all__'
 
 class evidenciaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = eventosSubirevidenciasAlumno
-        fields = ('id',
-                  'img',
-                  'evento',
-                  'cve_alumno')
+        fields = '__all__'
         
 class clasificacionSerializer(serializers.ModelSerializer):
     class Meta:
