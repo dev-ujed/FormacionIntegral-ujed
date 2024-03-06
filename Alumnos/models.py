@@ -48,7 +48,8 @@ class Oescuela(models.Model):
     desc_completo           = models.CharField(max_length=100)
     desc_escuela            = models.CharField(max_length=40)
     ubicacion               = models.CharField(max_length=30)
-    class Meta:
+    class Meta: #Metadatos adicionales
+        #La tabla Escuela debe de existir en la base de datos
         managed     = False
         db_table    = 'ESCUELA'
         app_label   = 'desarrollo'
