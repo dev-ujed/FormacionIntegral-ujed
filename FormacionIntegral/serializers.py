@@ -24,6 +24,7 @@ class FormacionInSerializer(serializers.ModelSerializer):
 
 class FormacionInEventoSerializer(serializers.ModelSerializer):
     unidadResponsable = serializers.CharField(source = 'evento.unidadResponsable')
+    cveUnidadResponsable = serializers.CharField(source = 'evento.cveUnidadResponsable')
     tituloEvento = serializers.CharField(source = 'evento.tituloEvento')
     descripcionEvento = serializers.CharField(source = 'evento.descripcionEvento')
     eventoDedicadoA = serializers.CharField(source = 'evento.eventoDedicadoA')
@@ -53,7 +54,8 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
                   'created',
                   'modified',
                   'tituloEvento',
-                  'unidadResponsable',  
+                  'unidadResponsable',
+                  'cveUnidadResponsable',  
                   'tituloEvento',
                   'descripcionEvento',
                   'eventoDedicadoA',
