@@ -63,3 +63,12 @@ class eventosSubirevidenciasAlumno(  models.Model                               
           img                          = models.FileField(upload_to='EvidenciasAlumnos/images')
           evento                       = models.ForeignKey(eventos, on_delete=models.CASCADE   )
           cve_alumno                   = models.CharField ("cve_alumno", max_length=9          )
+
+# class oescuela(models.Model):
+#       cve_escuela = models.CharField('cve_escuela', max_length=150, blank=False,default='')
+#       desc_escuela = models.CharField('desc_escuela', max_length=150, blank=False,default='')
+
+#       class Meta:
+#             managed = False
+#             db_table = 'ESCUELA'
+#             app_label = 'desarrollo'

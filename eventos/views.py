@@ -4,6 +4,8 @@ from rest_framework import status
 
 from .models import *
 from .serializers import *
+from Alumnos.serializers import oescuelaSerializer
+from Alumnos.models import Oescuela
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -141,3 +143,9 @@ class evidenciaPorMatricula(generics.ListAPIView):
     def get_queryset(self):
         matricula = self.kwargs['matricula']
         return eventosSubirevidenciasAlumno.objects.filter(cve_alumno=matricula)
+
+
+class escuela(generics.ListAPIView):
+    # API endpoint that returns a single customer by pk.
+    queryset = Oescuela.objects.all()
+    serializer_class = oescuelaSerializer
