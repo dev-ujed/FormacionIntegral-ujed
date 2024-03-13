@@ -24,6 +24,7 @@ class arte_categorias(  models.Model                                            
 class eventos(models.Model):
     #     Descripción
           unidadResponsable = models.CharField('unidadResponsable', max_length=150, blank=False,default='')
+          cveUnidadResponsable = models.CharField('cveUnidadResponsable', max_length=150, blank=False, default='')
           tituloEvento      = models.CharField('tituloEvento', max_length=200,blank=False,default='')
           descripcionEvento = models.TextField('descripcionEvento')
           eventoDedicadoA   = models.CharField('eventoDedicadoA', max_length=200)
