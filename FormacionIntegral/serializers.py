@@ -78,7 +78,7 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
         if evidencia.exists(): 
             return True
         else: 
-            return Falsecd 
+            return False 
 
         
         #fields = '__all__'
