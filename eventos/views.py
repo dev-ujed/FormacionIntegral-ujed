@@ -14,6 +14,8 @@ from rest_framework import generics
 from rest_framework import exceptions
 import django_filters.rest_framework
 from django_filters.rest_framework import DjangoFilterBackend
+from django.db.models import Q
+
 
 #Eventos
 class eventosCreate(generics.CreateAPIView):
@@ -149,3 +151,12 @@ class escuela(generics.ListAPIView):
     # API endpoint that returns a single customer by pk.
     queryset = Oescuela.objects.all()
     serializer_class = oescuelaSerializer
+
+class eventoPorUnidad(generics.ListAPIView): 
+    serializer_class = eventosSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['cveUnidadResponsable']
+
+    def get_queryset(self):
+        cveUnidadResponsable = self.kwargs['cveUnidadResponsable']
+        return eventos.objects.filter(Q(cveUnidadResponsable=cveUnidadResponsable) | Q(eventoDedicadoA="Abierto"))

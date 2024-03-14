@@ -34,4 +34,5 @@ urlpatterns = [
 
     path('matricula-evidencia/<str:matricula>/', evidenciaPorMatricula.as_view()),
     path('escuela', escuela.as_view()),
+    path('clave/<str:cveUnidadResponsable>/', eventoPorUnidad.as_view()),
 ]
