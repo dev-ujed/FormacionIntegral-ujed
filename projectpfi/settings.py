@@ -124,7 +124,7 @@ DATABASES = {
        'ENGINE': 'django.db.backends.oracle',
        'NAME': 'SAI2',
        'USER': 'API_ESCOLAR',
-       'PASSWORD': 'api_escolar0511',
+       'PASSWORD': 'api2024',
        'HOST': '192.168.1.184',
        'PORT': '1527',
     },
