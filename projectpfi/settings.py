@@ -12,21 +12,32 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
-import os
+import os, environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 """ BASE_DIR = Path(__file__).resolve().parent.parent """
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
+# reading .env file
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env')) 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-004ube^$7p-2cbz9j#_(9213)$+2u8cq6=#=oyrk@1%#5-6(y_'
+SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG')
 
-ALLOWED_HOSTS = ['fibackend.ujed.mx', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+
+APP_URL=env.str('APP_URL')
+
 
 
 # Application definition
@@ -79,8 +90,8 @@ CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 CORS_ALLOW_HEADERS = ['*']
 
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8081',
-    'http://fibackend.ujed.mx',
+    'https://localhost:8081',
+    'https://fibackend.ujed.mx',
 )
 
 ROOT_URLCONF = 'projectpfi.urls'
@@ -197,7 +208,7 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000'
+LOGIN_REDIRECT_URL = 'inicio/'
 
 # ACCOUNT_LOGOUT_ON_GET = True
 # ACCOUNT_LOGOUT_REDIRECT_URL = '/'
