@@ -69,7 +69,7 @@ class AlumnosDetailOracle(generics.RetrieveAPIView):
     serializer_class = oalumnoSerializer
 
 class MovAlumno(generics.ListAPIView): 
-    queryset = Omov_alumno.objects.all()[1000]
+    queryset = Omov_alumno.objects.filter()[:1000]
     serializer_class = omov_alumnoSerializer
     
     def get_object(self):
@@ -182,6 +182,5 @@ class CoordinatorAlumnosListView(generics.ListAPIView):
         queryset = Omov_alumno.objects.filter(
             cve_ciclo=ciclos
         )
-        print(queryset)
         return queryset
 
