@@ -179,8 +179,10 @@ class CoordinatorAlumnosListView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         ciclos = self.request.GET.get('cve_ciclo')
+        #print("Valor de cve_ciclo:", ciclos)
         queryset = Omov_alumno.objects.filter(
             cve_ciclo=ciclos
-        )
+        )[:1000]
+        #print("Consulta SQL:", queryset.query)
         return queryset
 
