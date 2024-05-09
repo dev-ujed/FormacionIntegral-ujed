@@ -40,7 +40,8 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
     descripcion = serializers.CharField(source = 'evento.descripcion')
     #Creditos
     creditos = serializers.DecimalField(source = 'evento.creditos', max_digits = 3, decimal_places=2)
-    categorias = serializers.CharField(source = 'evento.categorias')
+    id_categoria = serializers.IntegerField(source = 'evento.categorias.id')
+    categorias = serializers.CharField(source = 'evento.categorias.text')
     responsable = serializers.CharField(source = 'evento.responsable')
     evidencia = serializers.SerializerMethodField()
     class Meta:
@@ -67,6 +68,7 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
                   'cupo',
                   'descripcion',
                   'creditos',
+                  'id_categoria',
                   'categorias',
                   'responsable', 
                   'evidencia', 
