@@ -160,3 +160,11 @@ class eventoPorUnidad(generics.ListAPIView):
     def get_queryset(self):
         cveUnidadResponsable = self.kwargs['cveUnidadResponsable']
         return eventos.objects.filter(Q(cveUnidadResponsable=cveUnidadResponsable) | Q(eventoDedicadoA="Abierto"))
+
+class eventoPorCiclo(generics.ListAPIView):
+    serializer_class = eventosSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_field = ['cve_ciclo']
+
+    queryset = eventos.objects.all()
+
