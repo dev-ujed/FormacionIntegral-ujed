@@ -155,12 +155,16 @@ class escuela(generics.ListAPIView):
 class eventoPorUnidad(generics.ListAPIView): 
     serializer_class = eventosSerializer
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['cveUnidadResponsable']
+    filter_fields = ['cveUnidadResponsable', 'cve_ciclo']
 
     def get_queryset(self):
         cveUnidadResponsable = self.kwargs['cveUnidadResponsable']
-        return eventos.objects.filter(Q(cveUnidadResponsable=cveUnidadResponsable) | Q(eventoDedicadoA="Abierto"))
-
+        cve_ciclo = self.request.query_params.get('cve_ciclo')
+        queryset = eventos.objects.filter(Q(cveUnidadResponsable=cveUnidadResponsable) | Q(eventoDedicadoA="Abierto"))
+        if cve_ciclo:
+            queryset = queryset.filter(cve_ciclo=cve_ciclo)
+        return queryset
+    
 class eventoPorCiclo(generics.ListAPIView):
     serializer_class = eventosSerializer
     filter_backends = [DjangoFilterBackend]
