@@ -49,7 +49,7 @@ class eventos(models.Model):
           fechaFin          = models.DateField('fechaFin', null=True, blank=True)
           horas_totales     = models.IntegerField('horas_totales', blank=True, null=True)  
           contacto          =  models.CharField('contacto', max_length=100, blank=True, null=True)
-          cve_ciclo         = models.CharField('cve_ciclo', default='800', max_length=100)
+          cve_ciclo         = models.CharField('cve_ciclo', default='795', max_length=100)
     
 #     modelo            para   el    modulo calendario de eventos
 class eventosCalendario(models.Model):
