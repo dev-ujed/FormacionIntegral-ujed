@@ -20,36 +20,45 @@ class arte_categorias(  models.Model                                            
           text            = models.CharField (max_length = 100                                   )
           categoria       = models.ForeignKey(catalogo_categorias2, on_delete=CASCADE, null= True)
 
+class Oparametros_dtd(models.Model):
+      id                  = models.IntegerField(primary_key=True)
+      valor               = models.CharField(max_length=4000)
+
+      class Meta:
+            managed       = False
+            db_table      = '"API_ESCOLAR"."PARAMETROS_DTD"'
+            app_label     = 'desarrollo'
+
 
 class eventos(models.Model):
     #     Descripción
-          unidadResponsable = models.CharField('unidadResponsable', max_length=150, blank=False,default='')
-          cveUnidadResponsable = models.CharField('cveUnidadResponsable', max_length=150, blank=False, default='')
-          tituloEvento      = models.CharField('tituloEvento', max_length=200,blank=False,default='')
-          descripcionEvento = models.TextField('descripcionEvento')
-          eventoDedicadoA   = models.CharField('eventoDedicadoA', max_length=200)
-          flayer            = models.ImageField(upload_to='Eventos/images', null= True)
+      unidadResponsable = models.CharField('unidadResponsable', max_length=150, blank=False,default='')
+      cveUnidadResponsable = models.CharField('cveUnidadResponsable', max_length=150, blank=False, default='')
+      tituloEvento      = models.CharField('tituloEvento', max_length=200,blank=False,default='')
+      descripcionEvento = models.TextField('descripcionEvento')
+      eventoDedicadoA   = models.CharField('eventoDedicadoA', max_length=200)
+      flayer            = models.ImageField(upload_to='Eventos/images', null= True)
     #     Calendario
       #     fechaEvento       = models.DateField('fechaEvento', default=timezone.now)
-          inicioEvento      = models.TimeField('inicioEvento', null=True, blank=True)
-          finEvento         = models.TimeField('finEvento', null=True, blank=True)
-          sede              = models.CharField('sede', max_length=150)
-          cupo              = models.IntegerField('cupo')
-          descripcion       = models.TextField('descripcion')
+      inicioEvento      = models.TimeField('inicioEvento', null=True, blank=True)
+      finEvento         = models.TimeField('finEvento', null=True, blank=True)
+      sede              = models.CharField('sede', max_length=150)
+      cupo              = models.IntegerField('cupo')
+      descripcion       = models.TextField('descripcion')
     #     Créditos
-          creditos          = models.DecimalField('creditos', max_digits = 3,decimal_places=2)
-          categorias        = models.ForeignKey(clasifi_cat, on_delete=models.CASCADE, null = True, related_name='categorias')
-          subCategoria1     = models.ForeignKey(catalogo_categorias, on_delete=models.CASCADE, null= True, related_name='categorias1')
-          subCategoria2     = models.ForeignKey(catalogo_categorias2, on_delete=models.CASCADE, null= True, related_name='categorias2')
-          subCategoriaArte  = models.ForeignKey(arte_categorias, on_delete=models.CASCADE, null= True, related_name='categoriasArte')
+      creditos          = models.DecimalField('creditos', max_digits = 3,decimal_places=2)
+      categorias        = models.ForeignKey(clasifi_cat, on_delete=models.CASCADE, null = True, related_name='categorias')
+      subCategoria1     = models.ForeignKey(catalogo_categorias, on_delete=models.CASCADE, null= True, related_name='categorias1')
+      subCategoria2     = models.ForeignKey(catalogo_categorias2, on_delete=models.CASCADE, null= True, related_name='categorias2')
+      subCategoriaArte  = models.ForeignKey(arte_categorias, on_delete=models.CASCADE, null= True, related_name='categoriasArte')
     #     Crear             eventos responsable
-          responsable       = models.CharField('responsable', max_length=200)
+      responsable       = models.CharField('responsable', max_length=200)
     #     fechas
-          fechaInicio       = models.DateField('fechaInicio')
-          fechaFin          = models.DateField('fechaFin', null=True, blank=True)
-          horas_totales     = models.IntegerField('horas_totales', blank=True, null=True)  
-          contacto          =  models.CharField('contacto', max_length=100, blank=True, null=True)
-          cve_ciclo         = models.CharField('cve_ciclo', default='795', max_length=100)
+      fechaInicio       = models.DateField('fechaInicio')
+      fechaFin          = models.DateField('fechaFin', null=True, blank=True)
+      horas_totales     = models.IntegerField('horas_totales', blank=True, null=True)  
+      contacto          =  models.CharField('contacto', max_length=100, blank=True, null=True)
+      cve_ciclo         = models.CharField('cve_ciclo', blank=True, null=True, max_length=100)
     
 #     modelo            para   el    modulo calendario de eventos
 class eventosCalendario(models.Model):

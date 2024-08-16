@@ -23,6 +23,10 @@ class eventosCreate(generics.CreateAPIView):
     queryset = eventos.objects.all(),
     serializer_class = eventosSerializer
 
+class cicloActual(generics.ListAPIView):
+    queryset = Oparametros_dtd.objects.filter(id=61)
+    serializer_class = cicloActualSerializer
+
 
 class eventosList(generics.ListAPIView):
     # API endpoint that allows customer to be viewed.
