@@ -65,7 +65,7 @@ class AlumnosListView(generics.ListAPIView):
 
 class AlumnosDetailOracle(generics.RetrieveAPIView):
     # API endpoint that returns a single customer by pk.
-    queryset = Omov_alumno.objects.filter(cve_ciclo = '795')
+    queryset = Omov_alumno.objects.filter(cve_ciclo = '800')
     serializer_class = oalumnoSerializer
 
 class MovAlumno(generics.ListAPIView): 
