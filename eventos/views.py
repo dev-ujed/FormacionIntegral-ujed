@@ -23,9 +23,13 @@ class eventosCreate(generics.CreateAPIView):
     queryset = eventos.objects.all(),
     serializer_class = eventosSerializer
 
-class cicloActual(generics.ListAPIView):
-    queryset = Oparametros_dtd.objects.filter(id=61)
+class cicloActual(generics.RetrieveAPIView):
+    queryset = Oparametros_dtd.objects.all()
     serializer_class = cicloActualSerializer
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return Oparametros_dtd.objects.get(id=pk)
 
 
 class eventosList(generics.ListAPIView):
