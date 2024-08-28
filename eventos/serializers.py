@@ -1,6 +1,6 @@
 from django.db import models
 from rest_framework import serializers 
-from .models import eventos, eventosCalendario, eventosSubirevidenciasAlumno
+from .models import eventos, eventosCalendario, eventosSubirevidenciasAlumno, Oparametros_dtd
 from Alumnos.models import Oalumno
 from eventos.models import *
  
@@ -8,6 +8,11 @@ class eventosSerializer(serializers.ModelSerializer):
  
     class Meta:
         model = eventos
+        fields = '__all__'
+
+class cicloActualSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Oparametros_dtd
         fields = '__all__'
         
 class eventosEditSerializer(serializers.ModelSerializer):
@@ -71,20 +76,13 @@ class evidenciaSerializerCreate(serializers.ModelSerializer):
 
     class Meta:
         model = eventosSubirevidenciasAlumno
-        fields = (
-                  'img',
-                  'evento',
-                  'cve_alumno'
-        )
+        fields = '__all__'
 
 class evidenciaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = eventosSubirevidenciasAlumno
-        fields = ('id',
-                  'img',
-                  'evento',
-                  'cve_alumno')
+        fields = '__all__'
         
 class clasificacionSerializer(serializers.ModelSerializer):
     class Meta:

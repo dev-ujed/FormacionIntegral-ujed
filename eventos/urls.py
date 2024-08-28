@@ -33,4 +33,9 @@ urlpatterns = [
     path('categoriasArte_eve', CategoriasArteList.as_view()),
 
     path('matricula-evidencia/<str:matricula>/', evidenciaPorMatricula.as_view()),
+    path('escuela', escuela.as_view()),
+    path('clave/<str:cveUnidadResponsable>/', eventoPorUnidad.as_view()),
+    path('ciclos/<str:cve_ciclo>/', eventoPorCiclo.as_view()),
+
+    path('cicloActual/id=<int:pk>/', cicloActual.as_view(), name='cicloActual'),
 ]

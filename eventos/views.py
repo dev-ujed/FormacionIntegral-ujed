@@ -4,6 +4,8 @@ from rest_framework import status
 
 from .models import *
 from .serializers import *
+from Alumnos.serializers import oescuelaSerializer
+from Alumnos.models import Oescuela
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -12,12 +14,22 @@ from rest_framework import generics
 from rest_framework import exceptions
 import django_filters.rest_framework
 from django_filters.rest_framework import DjangoFilterBackend
+from django.db.models import Q
+
 
 #Eventos
 class eventosCreate(generics.CreateAPIView):
     # API endpoint that allows creation of a new customer
     queryset = eventos.objects.all(),
     serializer_class = eventosSerializer
+
+class cicloActual(generics.RetrieveAPIView):
+    queryset = Oparametros_dtd.objects.all()
+    serializer_class = cicloActualSerializer
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return Oparametros_dtd.objects.get(id=pk)
 
 
 class eventosList(generics.ListAPIView):
@@ -141,3 +153,30 @@ class evidenciaPorMatricula(generics.ListAPIView):
     def get_queryset(self):
         matricula = self.kwargs['matricula']
         return eventosSubirevidenciasAlumno.objects.filter(cve_alumno=matricula)
+
+
+class escuela(generics.ListAPIView):
+    # API endpoint that returns a single customer by pk.
+    queryset = Oescuela.objects.all()
+    serializer_class = oescuelaSerializer
+
+class eventoPorUnidad(generics.ListAPIView): 
+    serializer_class = eventosSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['cveUnidadResponsable', 'cve_ciclo']
+
+    def get_queryset(self):
+        cveUnidadResponsable = self.kwargs['cveUnidadResponsable']
+        cve_ciclo = self.request.query_params.get('cve_ciclo')
+        queryset = eventos.objects.filter(Q(cveUnidadResponsable=cveUnidadResponsable) | Q(eventoDedicadoA="Abierto"))
+        if cve_ciclo:
+            queryset = queryset.filter(cve_ciclo=cve_ciclo)
+        return queryset
+    
+class eventoPorCiclo(generics.ListAPIView):
+    serializer_class = eventosSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_field = ['cve_ciclo']
+
+    queryset = eventos.objects.all()
+

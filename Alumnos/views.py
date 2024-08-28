@@ -65,11 +65,11 @@ class AlumnosListView(generics.ListAPIView):
 
 class AlumnosDetailOracle(generics.RetrieveAPIView):
     # API endpoint that returns a single customer by pk.
-    queryset = Omov_alumno.objects.filter(cve_ciclo = '790')
+    queryset = Omov_alumno.objects.filter(cve_ciclo = '800')
     serializer_class = oalumnoSerializer
 
 class MovAlumno(generics.ListAPIView): 
-    queryset = Omov_alumno.objects.filter(cve_escuela ='1050')[:200]
+    queryset = Omov_alumno.objects.filter()[:1000]
     serializer_class = omov_alumnoSerializer
     
     def get_object(self):
@@ -178,15 +178,11 @@ class CoordinatorAlumnosListView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        cve_escuela_usuario = user.cve_escuela
         ciclos = self.request.GET.get('cve_ciclo')
-        cve_carreras_usuario = user.cve_carrera.split(',') 
-
+        print("Valor de cve_ciclo:", ciclos)
         queryset = Omov_alumno.objects.filter(
-            cve_ciclo=ciclos,
-            cve_escuela=cve_escuela_usuario,
-            cve_carrera__in=cve_carreras_usuario  
-        )
-        
+            cve_ciclo=ciclos
+        )[:1000]
+        #print("Consulta SQL:", queryset.query)
         return queryset
 

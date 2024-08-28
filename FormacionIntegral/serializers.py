@@ -24,6 +24,7 @@ class FormacionInSerializer(serializers.ModelSerializer):
 
 class FormacionInEventoSerializer(serializers.ModelSerializer):
     unidadResponsable = serializers.CharField(source = 'evento.unidadResponsable')
+    cveUnidadResponsable = serializers.CharField(source = 'evento.cveUnidadResponsable')
     tituloEvento = serializers.CharField(source = 'evento.tituloEvento')
     descripcionEvento = serializers.CharField(source = 'evento.descripcionEvento')
     eventoDedicadoA = serializers.CharField(source = 'evento.eventoDedicadoA')
@@ -39,7 +40,8 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
     descripcion = serializers.CharField(source = 'evento.descripcion')
     #Creditos
     creditos = serializers.DecimalField(source = 'evento.creditos', max_digits = 3, decimal_places=2)
-    categorias = serializers.CharField(source = 'evento.categorias')
+    id_categoria = serializers.IntegerField(source = 'evento.categorias.id')
+    categorias = serializers.CharField(source = 'evento.categorias.text')
     responsable = serializers.CharField(source = 'evento.responsable')
     evidencia = serializers.SerializerMethodField()
     class Meta:
@@ -53,7 +55,8 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
                   'created',
                   'modified',
                   'tituloEvento',
-                  'unidadResponsable',  
+                  'unidadResponsable',
+                  'cveUnidadResponsable',  
                   'tituloEvento',
                   'descripcionEvento',
                   'eventoDedicadoA',
@@ -65,6 +68,7 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
                   'cupo',
                   'descripcion',
                   'creditos',
+                  'id_categoria',
                   'categorias',
                   'responsable', 
                   'evidencia', 
@@ -76,7 +80,7 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
         if evidencia.exists(): 
             return True
         else: 
-            return False
+            return False 
 
         
         #fields = '__all__'

@@ -132,3 +132,11 @@ class CoordinatorAlumnoSerializer(serializers.ModelSerializer):
             return desc_carrera.desc_carrera
         
       
+
+class oescuelaSerializer(serializers.ModelSerializer): 
+    class Meta: 
+        model = Oescuela
+        fields = ('cve_escuela', 
+                  'desc_escuela',
+                    )
+    
