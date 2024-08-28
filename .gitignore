@@ -19,4 +19,5 @@ static/tramites/*
 /static/img/qr/
 /static/img/qr_actas/
 /media/*
-/media_/*
+/media_/* 
+/media_/
