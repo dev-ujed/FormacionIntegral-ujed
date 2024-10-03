@@ -28,8 +28,14 @@ class cicloActual(generics.RetrieveAPIView):
     serializer_class = cicloActualSerializer
 
     def get_object(self):
-        pk = self.kwargs.get('pk')
-        return Oparametros_dtd.objects.get(id=pk)
+        return Oparametros_dtd.objects.get(id=61)
+
+class descCicloActual(generics.RetrieveAPIView):
+    queryset = Oparametros_dtd.objects.all()
+    serializer_class = cicloActualSerializer
+
+    def get_object(self):
+        return Oparametros_dtd.objects.get(id=101)
 
 
 class eventosList(generics.ListAPIView):
