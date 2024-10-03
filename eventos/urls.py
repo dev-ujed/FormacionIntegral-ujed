@@ -37,5 +37,6 @@ urlpatterns = [
     path('clave/<str:cveUnidadResponsable>/', eventoPorUnidad.as_view()),
     path('ciclos/<str:cve_ciclo>/', eventoPorCiclo.as_view()),
 
-    path('cicloActual/id=<int:pk>/', cicloActual.as_view(), name='cicloActual'),
+    path('cicloActual/', cicloActual.as_view(), name='cicloActual'),
+    path('descCiclo/', descCicloActual.as_view(), name='descCiclo'),
 ]

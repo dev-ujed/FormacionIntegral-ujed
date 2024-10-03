@@ -64,9 +64,12 @@ class AlumnosListView(generics.ListAPIView):
     serializer_class = oalumnoSerializer
 
 class AlumnosDetailOracle(generics.RetrieveAPIView):
-    # API endpoint that returns a single customer by pk.
-    queryset = Omov_alumno.objects.filter(cve_ciclo = '800')
     serializer_class = oalumnoSerializer
+
+    def get_queryset(self):
+        # Obtener el ciclo actual desde la tabla Oparametros_dtd
+        ciclo_actual = Oparametros_dtd.objects.get(id=61).valor_param
+        return Omov_alumno.objects.filter(cve_ciclo=ciclo_actual)
 
 class MovAlumno(generics.ListAPIView): 
     queryset = Omov_alumno.objects.filter()[:1000]
