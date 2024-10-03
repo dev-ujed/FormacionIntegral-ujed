@@ -29,6 +29,8 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 import openpyxl
 
+from eventos.models import Oparametros_dtd
+
 
 class AlumnosCreate(generics.CreateAPIView):
     # API endpoint that allows creation of a new customer
@@ -68,7 +70,7 @@ class AlumnosDetailOracle(generics.RetrieveAPIView):
 
     def get_queryset(self):
         # Obtener el ciclo actual desde la tabla Oparametros_dtd
-        ciclo_actual = Oparametros_dtd.objects.get(id=61).valor_param
+        ciclo_actual = Oparametros_dtd.objects.get(id=61).valor
         return Omov_alumno.objects.filter(cve_ciclo=ciclo_actual)
 
 class MovAlumno(generics.ListAPIView): 
