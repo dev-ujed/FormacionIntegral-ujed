@@ -1,3 +1,4 @@
+__pycache__/
 *.pyc
 db.sqlite3
 venv/
@@ -9,15 +10,12 @@ mix-manifest*
 static/css/*
 static/js/*
 npm-debug.log
-yarn-error.log
-static/tramites/*
-/todo.md
 /documentos
 /documentos2
 /logs
 /env/
 /static/img/qr/
 /static/img/qr_actas/
-/media/*
-/media_/* 
-/media_/
+media/*.*
+media_/*.*
+"media/"
