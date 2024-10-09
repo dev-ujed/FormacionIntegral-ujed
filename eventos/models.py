@@ -60,6 +60,9 @@ class eventos(models.Model):
       contacto          =  models.CharField('contacto', max_length=100, blank=True, null=True)
       cve_ciclo         = models.CharField('cve_ciclo', blank=True, null=True, max_length=100)
       creacionEvento    = models.DateTimeField('creacionEvento', auto_now_add = True)
+
+      fecha             = models.DateField('fecha', null=True, blank=True) #Fecha que empieza el evento
+      hora              = models.TimeField('hora', null=True, blank=True)  #Hora que empieza el evento
     
 #     modelo            para   el    modulo calendario de eventos
 class eventosCalendario(models.Model):
