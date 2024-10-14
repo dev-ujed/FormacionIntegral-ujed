@@ -43,7 +43,12 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
     id_categoria = serializers.IntegerField(source = 'evento.categorias.id')
     categorias = serializers.CharField(source = 'evento.categorias.text')
     responsable = serializers.CharField(source = 'evento.responsable')
+
+    fecha = serializers.DateField(source = 'evento.fecha')
+    hora = serializers.TimeField(source = 'evento.hora')
+    
     evidencia = serializers.SerializerMethodField()
+
     class Meta:
         model = FormacionIntegral
         fields = ('id',
@@ -73,6 +78,8 @@ class FormacionInEventoSerializer(serializers.ModelSerializer):
                   'responsable', 
                   'evidencia', 
                   'flayer',
+                  'fecha',
+                  'hora',
                   )
         
     def get_evidencia(self, obj): 
