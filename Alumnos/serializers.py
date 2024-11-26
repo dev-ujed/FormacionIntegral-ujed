@@ -32,7 +32,8 @@ class oalumnoSerializer(serializers.ModelSerializer):
             'cve_alumno', 
             'desc_carrera', 
             'cve_ciclo', 
-            'cve_carrera'
+            'cve_carrera',
+            'fecha_mov',
         )
 
     def get_alumno(self, obj): 

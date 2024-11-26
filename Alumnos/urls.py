@@ -9,7 +9,7 @@ urlpatterns = [
     path('create/', AlumnosCreate.as_view(), name='crear-evento'),
     path('', AlumnosList.as_view()),
     path('<int:pk>/', AlumnosDetail.as_view(), name='retrieve-evento'),
-    path('movalumno/<str:pk>/', AlumnosDetailOracle.as_view(), name='retrieve-evento'),
+    path('movalumno/<str:cve_alumno>/', AlumnosDetailOracle.as_view(), name='retrieve-evento'),
     path('update/<int:pk>/', AlumnosUpdate.as_view(), name='actualizar-evento'),
     path('delete/<int:pk>/', AlumnosDelete.as_view(), name='eliminar-evento'), 
     path('oalumnos/', AlumnosListView.as_view(), name='get_oalumnos'),

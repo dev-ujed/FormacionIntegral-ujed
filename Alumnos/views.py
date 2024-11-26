@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http.response import JsonResponse
+from django.db.models import OuterRef, Subquery, Max
 from rest_framework.parsers import JSONParser 
 from rest_framework.response import Response
 from rest_framework import status
@@ -67,11 +68,21 @@ class AlumnosListView(generics.ListAPIView):
 
 class AlumnosDetailOracle(generics.RetrieveAPIView):
     serializer_class = oalumnoSerializer
-
+    lookup_field = 'cve_alumno'
     def get_queryset(self):
         # Obtener el ciclo actual desde la tabla Oparametros_dtd
         ciclo_actual = Oparametros_dtd.objects.get(id=61).valor
-        return Omov_alumno.objects.filter(cve_ciclo=ciclo_actual)
+        # Subconsulta para obtener la última fecha_mov para cada matrícula
+        latest_movements = Omov_alumno.objects.filter(
+            cve_ciclo=ciclo_actual,
+            cve_alumno=OuterRef('cve_alumno')  # Vincula la matrícula externa
+        ).order_by('fecha_mov').values('fecha_mov')[:1]
+        # Filtrar registros con el ciclo actual y la última fecha_mov por matrícula
+        filtered_query = Omov_alumno.objects.filter(
+            cve_ciclo=ciclo_actual,
+            fecha_mov=Subquery(latest_movements)  # Vincula con la subconsulta
+        )
+        return filtered_query
 
 class MovAlumno(generics.ListAPIView): 
     queryset = Omov_alumno.objects.filter()[:1000]
